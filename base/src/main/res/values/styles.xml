@@ -1,0 +1,104 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--SplashActivity样式-->
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             Flutter draws its first frame -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <!--不让windowBackground延申到navigation bar区域-->
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <!--适配Android P刘海屏-->
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
+        <!--全屏即无通知栏-->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--MainActivity样式-->
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Show a splash screen on the activity. Automatically removed when
+             Flutter draws its first frame -->
+        <item name="android:windowBackground">@drawable/launch_background</item>
+        <!--不让windowBackground延申到navigation bar区域-->
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <!--适配Android P刘海屏-->
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:ignore="NewApi">shortEdges</item>
+        <!--全屏即无通知栏-->
+        <item name="android:windowFullscreen">false</item>
+        <!-- Activty跳转动画样式 -->
+        <item name="android:windowAnimationStyle">@style/activityAnim</item>
+    </style>
+
+    <style name="MyDialog" parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <!-- 使用style方式定义activity切换动画 -->
+    <style name="activityAnim">
+        <!--打开动画-->
+        <item name="android:activityOpenEnterAnimation">@anim/swip_back_layout_activity_forward_enter</item>
+        <item name="android:activityOpenExitAnimation">@anim/swip_back_layout_activity_forward_exit</item>
+        <!--关闭动画-->
+        <item name="android:activityCloseEnterAnimation">@anim/swip_back_layout_activity_backward_enter</item>
+        <item name="android:activityCloseExitAnimation">@anim/swip_back_layout_activity_backward_exit</item>
+    </style>
+
+    <style name="Animation_fade" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowEnterAnimation">@anim/anim_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_out</item>
+    </style>
+
+    <!--进入和退出的动画命名-->
+    <style name="Animation_From_Bottom">
+        <item name="android:windowEnterAnimation">@anim/anim_from_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_from_bottom_out</item>
+    </style>
+
+    <!--进入和退出的动画命名-->
+    <style name="Animation_From_Top">
+        <item name="android:windowEnterAnimation">@anim/anim_from_top_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_from_top_out</item>
+    </style>
+
+    <!-- 自定义仿IOS的ActionSheet底部Dialog的样式 ，有模糊效果 -->
+    <style name="ActionSheetDialogStyle" parent="@android:style/Theme.Dialog">
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- Dialog进入及退出动画 -->
+        <item name="android:windowAnimationStyle">@style/ActionSheetDialogAnimation</item>
+    </style>
+
+    <!-- ActionSheet进出动画 -->
+    <style name="ActionSheetDialogAnimation" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/anim_from_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_from_bottom_out</item>
+    </style>
+
+    <style name="tab_Layout_Style">
+        <item name="android:textSize">15sp</item>
+    </style>
+
+</resources>

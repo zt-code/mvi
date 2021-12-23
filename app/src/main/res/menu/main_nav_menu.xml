@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_frg1_dest"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="标题1" />
+
+    <item
+        android:id="@+id/navigation_frg2_dest"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="标题2" />
+
+    <item
+        android:id="@+id/navigation_frg3_dest"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="标题3" />
+
+    <item
+        android:id="@+id/navigation_frg4_dest"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="标题4" />
+
+</menu>

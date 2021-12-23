@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="ObservableField&lt;JSONObject>"/>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="content"
+            type="String" />
+
+        <variable
+            name="img"
+            type="Integer" />
+
+        <variable
+            name="show"
+            type="Integer" />
+
+        <import type="android.view.View"/>
+        <import type="com.alibaba.fastjson.JSONObject" />
+        <import type="androidx.databinding.ObservableField" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:gravity="center"
+        app:onVisible='@{show==0?View.VISIBLE:View.GONE}'>
+
+        <ProgressBar
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:indeterminateTint="@color/c_4a83f0"
+            android:indeterminateTintMode="src_atop"/>
+
+    </LinearLayout>
+
+</layout>
+

@@ -1,0 +1,8 @@
+<resources>
+
+
+    <item type="id" name="toolbar" />
+    <item type="id" name="base_appbar" />
+    <item type="id" name="frg_content" />
+
+</resources>

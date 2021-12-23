@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.base.lib.statusbar.StatusBarFLayout
+            android:id="@+id/layout_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:minWidth="100dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center"
+                app:tabBackground="@null"
+                app:tabRippleColor="@null"
+                app:tabTextAppearance="@style/tab_Layout_Style"
+                app:tabIndicatorHeight="1dp"
+                app:tabIndicatorColor="@color/white"
+                app:tabIndicatorFullWidth="false"
+                app:tabTextColor="@color/c_4a83f0"
+                app:tabSelectedTextColor="@color/white"
+                app:tabMode="scrollable"/>
+        </com.base.lib.statusbar.StatusBarFLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

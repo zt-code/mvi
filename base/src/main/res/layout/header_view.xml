@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="title"
+            type="String" />
+
+        <import type="com.base.lib.base.command.BindingCommand"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+        <ImageView
+            android:id="@+id/hiv_left"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_back_black"/>
+
+        <TextView
+            android:id="@+id/htv_left"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/c_4e4e4e"
+            android:text=""
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/htv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="150dp"
+            android:layout_centerInParent="true"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:textSize="18sp"
+            onText='@{title}'
+            android:text=""
+            android:textColor="@color/c_4e4e4e" />
+
+        <ImageView
+            android:id="@+id/hiv_right"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:padding="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/htv_right"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text=""
+            android:visibility="visible"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_alignParentBottom="true"
+            android:background="@color/c_line"/>
+
+    </RelativeLayout>
+
+</layout>
+
+

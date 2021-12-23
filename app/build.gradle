@@ -1,0 +1,96 @@
+if(isAppLight.toBoolean()) {
+    apply plugin: 'com.android.application'
+}else {
+    apply plugin: 'com.android.library'
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+//apply from:'../dependencies.gradle'
+
+kapt {
+    correctErrorTypes true
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        if(isAppLight.toBoolean()) {
+            applicationId "com.zt.mvi"
+        }
+
+        sourceSets {
+            main {
+                if(isAppLight.toBoolean()) {
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                }else {
+                    manifest.srcFile 'src/main/manifest_module/AndroidManifest.xml'
+                }
+            }
+        }
+
+        minSdk 21
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding = true
+        viewBinding true
+    }
+
+    if(isAppLight.toBoolean()) {
+        flavorDimensions "color"
+        productFlavors {
+            channel_huawei {
+                buildConfigField "String", "wx_appid", '"wxea5228120a2ac7da"'
+                manifestPlaceholders = [
+                    app_name : "点亮A",
+                    app_icon : "@mipmap/ic_launcher",
+                    app_version : "1.8.5"
+                ]
+            }
+        }
+    }
+
+}
+
+dependencies {
+    //基类库
+    api project(':common')
+    if(isAppLight.toBoolean()) {
+        implementation project(':module1')
+    }
+
+    //抛错
+    implementation 'cat.ereza:customactivityoncrash:2.2.0'
+
+    implementation 'com.alibaba:arouter-api:1.5.1'
+    kapt 'com.alibaba:arouter-compiler:1.5.1'
+
+    // hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+}

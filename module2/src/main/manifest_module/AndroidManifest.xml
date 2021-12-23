@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zt.module2">
+
+    <application
+        android:theme="@style/BaseTheme">
+        <activity
+            android:name=".Module2MainActivity">
+        </activity>
+    </application>
+
+</manifest>

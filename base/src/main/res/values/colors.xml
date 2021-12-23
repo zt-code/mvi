@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="colorProgressGradientStart">#f75acb</color>
+    <color name="colorProgressGradientEnd">#1ae8ff</color>-->
+    <color name="colorProgressGradientStart">#ff3333</color>
+    <color name="colorProgressGradientEnd">#1ae8ff</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="c_fafafa">#fafafa</color>
+    <color name="dft">#f5f5f5</color>
+    <color name="black">#000000</color>
+
+
+
+    <color name="c_bg">#f4f4f9</color>
+    <color name="c_line">#dedfdf</color>
+    <color name="c_bf281c">#bf281c</color>
+    <color name="c_b4b4b4">#b4b4b4</color>
+    <color name="c_b4b4b4_a_50">#99b4b4b4</color>
+    <color name="c_cacaca">#cacaca</color>
+    <color name="c_cccccc">#cccccc</color>
+    <color name="c_e1e1e1">#e1e1e1</color>
+    <color name="c_e4e4e4">#e4e4e4</color>
+    <color name="c_e6e6e6">#e6e6e6</color>
+    <color name="c_4e4e4e">#4e4e4e</color>
+    <color name="c_4a83f0">#4a83f0</color>
+    <color name="c_ff0000">#ff0000</color>
+    <color name="c_f5f5f5">#f5f5f5</color>
+    <color name="c_f6f6f6">#f6f6f6</color>
+
+
+</resources>

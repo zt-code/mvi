@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.zt.mvi">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".MyApp"
+        android:label="${app_name}"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:theme="@style/BaseTheme"
+        tools:replace="android:name,android:label,android:allowBackup">
+
+        <activity
+            android:name=".demo.navigation.NavigationActivity">
+
+        </activity>
+
+        <activity
+            android:name=".demo.TabLayoutActivity"
+            android:exported="false"
+            android:label="@string/title_activity_tab_layout"
+            android:theme="@style/BaseTheme" />
+
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".demo.refresh.RefreshActivity"
+            android:theme="@style/BaseTheme" />
+
+        <activity
+            android:name="com.zt.mvvm.base.act.ContainerActivity"
+            android:theme="@style/BaseTheme" />
+
+    </application>
+
+</manifest>

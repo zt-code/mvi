@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@+id/navigation_frg1_dest">
+
+    <fragment
+        android:id="@+id/navigation_frg1_dest"
+        android:name="com.zt.mvi.demo.navigation.FrgNavigation1"
+        android:label="哈哈哈1"
+        tools:layout="@layout/frg_navigation1">
+        <action
+            android:id="@+id/action_go_to_frg2"
+            app:destination="@id/navigation_frg2_dest" />
+        <argument
+            android:name="taskId"
+            app:argType="string"
+            android:defaultValue="unknown"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_frg2_dest"
+        android:name="com.zt.mvi.demo.navigation.FrgNavigation2"
+        android:label="哈哈哈2"
+        tools:layout="@layout/frg_navigation2">
+        <action
+            android:id="@+id/action_go_to_frg3"
+            app:destination="@id/navigation_frg3_dest" />
+        <argument
+            android:name="taskId"
+            app:argType="string"
+            android:defaultValue="unknown"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_frg3_dest"
+        android:name="com.zt.mvi.demo.navigation.FrgNavigation3"
+        android:label="哈哈哈3"
+        tools:layout="@layout/frg_navigation3">
+        <action
+            android:id="@+id/action_go_to_frg4"
+            app:destination="@id/navigation_frg4_dest" />
+        <argument
+            android:name="taskId"
+            app:argType="string"
+            android:defaultValue="unknown"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_frg4_dest"
+        android:name="com.zt.mvi.demo.navigation.FrgNavigation4"
+        android:label="哈哈哈4"
+        tools:layout="@layout/frg_navigation4">
+        <action
+            android:id="@+id/action_go_to_frg5"
+            app:destination="@id/navigation_frg5_dest" />
+        <argument
+            android:name="taskId"
+            app:argType="string"
+            android:defaultValue="unknown"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_frg5_dest"
+        android:name="com.zt.mvi.demo.navigation.FrgNavigation5"
+        android:label="哈哈哈5"
+        tools:layout="@layout/frg_navigation5">
+        <action
+            android:id="@+id/action_go_to_frg1"
+            app:destination="@id/navigation_frg1_dest" />
+        <argument
+            android:name="taskId"
+            app:argType="string"
+            android:defaultValue="unknown"/>
+    </fragment>
+
+</navigation>
