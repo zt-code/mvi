@@ -15,7 +15,7 @@ public class Data {
 
     private Date updatedTime;
     private int orderNo;
-    private String name;
+    private String name = "";
     private Date createdTime;
     private int id;
     private int status;

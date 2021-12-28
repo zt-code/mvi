@@ -49,7 +49,6 @@ class CoroutineCallAdapterFactory : CallAdapter.Factory() {
                 }
                 L.i(tag,"NetStateCallAdapter    $responseType")
                 NetStateCallAdapter<Any>(getParameterUpperBound(0, responseType))
-
             }
             Response::class.java -> {
                 if (responseType !is ParameterizedType) {
@@ -164,23 +163,21 @@ class CoroutineCallAdapterFactory : CallAdapter.Factory() {
                         val json = JSONObject.parseObject(body.str);
                         if(json.containsKey("data") && json.getIntValue("code") == 0) {
                             try {
-                                val bean = JSON.parseObject(body.str, body.type) as T;
+                                L.i(tag,"====bean type    "+body.type)
+                                L.i(tag,"====bean str    "+body.str)
+                                val bean = JSON.parseObject(json.getString("data"), body.type) as T;
                                 L.i(tag,"====bean    "+bean.toString())
                                 deferred.complete(NetState.Success(bean))
+
                             }catch (e: Exception) {
-                                L.i(tag,"====bean e code !=0    $json")
-                                deferred.complete(NetState.Error(JSONObject().apply {
-                                    put("code", json.getString("code"))
-                                    put("data", json.getString("data"))
-                                }))
+                                e.printStackTrace()
+                                L.i(tag,"====bean e code !=0    ${e}")
+                                deferred.complete(NetState.Error(json))
                             }
+
                         }else {
                             L.i(tag,"====bean code !=0    $json")
-                            deferred.complete(NetState.Error(JSONObject().apply {
-                                put("code", json.getString("code"))
-                                put("error", json.getString("error"))
-                                put("msg", json.getString("msg"))
-                            }))
+                            deferred.complete(NetState.Error(json))
                         }
                     }
                 }

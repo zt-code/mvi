@@ -43,13 +43,13 @@ class Net {
         initClient()
 
         //初始化URL
-        if (mUrl == null) mUrl = "https://chengshidianliang.net"
+        if (mUrl == null) mUrl = "http://192.168.0.28:32284"
         return retrofit?.baseUrl(mUrl)?.client(client?.build())?.build()?.create(service)!!
     }
 
     private fun initClient(): OkHttpClient.Builder {
 
-        var str = "{\"PLATFORM\":\"android\",\"ACCESS_TOKEN\":\"Wft056rTMOnH9JNhjDQ7VFu1dFca1cYr6QYZ\",\"MC\":\"channel_huawei\",\"OS_VERSION\":\"11\",\"User-Agent\":\"Mozilla/5.0 (Linux; Android 11; SM-G9750 Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36\",\"Client-IP\":\"115.236.35.106\",\"DEVICE_ID\":\"829e354b4523861256f5f2f35c3ba21\",\"APP_VERSION\":\"1.10.0\",\"Content-Type\":\"application/json\"}"
+        var str = "{\"PLATFORM\":\"android\",\"ACCESS_TOKEN\":\"A6SUiuG68SjXyUDXer09qSFBEbtowHTynwHM\",\"MC\":\"channel_huawei\",\"OS_VERSION\":\"11\",\"User-Agent\":\"Mozilla/5.0 (Linux; Android 11; SM-G9750 Build/RP1A.200720.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36\",\"Client-IP\":\"115.236.35.106\",\"DEVICE_ID\":\"829e354b4523861256f5f2f35c3ba21\",\"APP_VERSION\":\"1.11.0\",\"Content-Type\":\"application/json\"}"
         var json = JSONObject.parse(str) as Map<String, String>;
 
         baseInterceptor.apply {
@@ -58,7 +58,6 @@ class Net {
                 addHeader(key, value)
             }
         }
-
 
         //if(cookieJar == null) cookieJar = new PersistentCookieJar(new SetCookieCache(), new SharedPrefsCookiePersistor(mContext));
         //Cache cache = new Cache(mFile, 10 * 1024 * 1024);

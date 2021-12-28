@@ -2,13 +2,9 @@ package com.zt.mvi
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelStore
-import androidx.lifecycle.ViewModelStoreOwner
 import com.alibaba.android.arouter.launcher.ARouter
 import com.alibaba.fastjson.JSONObject
-import com.base.lib.base.IntentData
 import com.base.lib.base.Tag
 import com.base.lib.base.base_act.BaseFrgActivity
 import com.base.lib.base.base_frg.OnFragmentResult
@@ -17,19 +13,17 @@ import com.base.lib.net.bean.BaseResult
 import com.base.lib.net.http.HttpHelper
 import com.base.lib.observeState
 import com.zt.mvi.databinding.ActivitySplashBinding
-import com.zt.mvi.demo.FrgDemo
 import com.zt.mvi.demo.bean.Data
 import com.zt.mvi.demo.bean.IntTag
 import com.zt.mvi.demo.refresh.MainViewState
-import com.zt.mvi.demo.refresh.RefreshActivity
 import com.zt.mvi.demo.refresh.RefreshViewModel
 import com.zt.mvi.demo.refresh.RefreshViewModelFactory
-import com.zt.mvi.demo.viewpage.FrgViewPager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
 import javax.inject.Inject
-import android.R.string.no
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.base.lib.base.IntentData
+import com.zt.mvi.demo.refresh.RefreshActivity
 import com.zt.mvvm.base.frg.BaseFragment
 
 @AndroidEntryPoint
@@ -37,6 +31,7 @@ import com.zt.mvvm.base.frg.BaseFragment
 class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
 
     //private lateinit var viewModel: RefreshViewModel;
+
     @Inject
     lateinit var intTag: IntTag;
 
@@ -64,7 +59,7 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
 
         }
 
-        viewModel.viewStates.run {
+        /*viewModel.viewStates.run {
             observeState(this@SplashActivity, MainViewState<BaseResult<List<Data>>>::msg) {
                 it?.let {
                     //L.i("==========="+it.toString())
@@ -77,12 +72,11 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
                     }
                 }
             }
-        }
+        }*/
 
         /*GlobalScope.launch(Dispatchers.IO) {
             val getStr = HttpUtil.get("https://chengshidianliang.net/api/lightup/category/list", json)
             L.i("==========哈哈哈  $getStr")
-
         }*/
 
         bind.tv.setOnClickListener {
@@ -90,15 +84,15 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
                 .withString("key3", "888")
                 .navigation();*/
 
-            /*val intent = Intent(this, RefreshActivity::class.java)
+            val intent = Intent(this, RefreshActivity::class.java)
             intent.putExtra(Tag.UI, IntentData().apply {
                 frgParams = JSONObject().apply {
                     put("title", "我是SplashActivity页面传递过来的数据")
                 }
             })
-            startActivity(intent);*/
+            startActivity(intent);
 
-            val fragment: BaseFragment<*> = ARouter.getInstance().build("/module/fragment").navigation() as BaseFragment<*>
+            /*val fragment: BaseFragment<*> = ARouter.getInstance().build("/module/fragment").navigation() as BaseFragment<*>
             var result = object : OnFragmentResult {
                 override fun onResult(result: JSONObject) {
                     result?.let {
@@ -107,16 +101,15 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
                     }
                 }
             }
-            openFragment(/*FrgViewPager()*/fragment.apply {
+            openFragment(*//*FrgViewPager()*//*fragment.apply {
                 arguments = Bundle().apply {
                     putSerializable(Tag.FrgData, JSONObject().apply {
                         put("title", "FrgViewPager");
                     })
                 }
                 mResult = result
-            })?.commitAllowingStateLoss();
+            })?.commitAllowingStateLoss();*/
         };
-
     }
 
     private suspend fun getNet(): String {

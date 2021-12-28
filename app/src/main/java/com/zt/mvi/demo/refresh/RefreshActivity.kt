@@ -16,7 +16,6 @@ import com.zt.mvi.*
 import com.zt.mvi.databinding.ActivityRefreshBinding
 import com.zt.mvi.demo.FrgDemo
 import com.zt.mvi.demo.bean.Data
-import com.zt.mvi.demo.refresh.RefreshViewModelFactory
 import com.zt.mvvm.base.act.BaseActivity
 import com.zt.mvvm.base.act.ContainerActivity
 import java.util.*
@@ -62,19 +61,40 @@ class RefreshActivity : BaseActivity<ActivityRefreshBinding>() {
     private fun initViewModel() {
         viewModel.viewStates.run {
 
-            observeState(this@RefreshActivity, MainViewState<BaseResult<List<Data>>>::msg) {
+            observeState(this@RefreshActivity, MainViewState<List<Data>>::data, MainViewState<List<Data>>::fetchStatus) { data, status->
+                if(status == RefreshStatus.RefreshEnd) {
+                    newsRvAdapter.submitList(data)
+                }else if(status == RefreshStatus.LoadMoreEnd) {
+                    val newList = mutableListOf<Data>()
+                    var oldList = newsRvAdapter.currentList
+                    newList.addAll(oldList);
+                    data?.let {
+                        newList.addAll(it);
+                    }
+                    newsRvAdapter.submitList(newList);
+                }
+                when (status) {
+                    is RefreshStatus.NotRefresh -> bind.srlNewsHome.autoRefresh()
+                    is RefreshStatus.RefreshEnd -> bind.srlNewsHome.finishRefresh()
+                    is RefreshStatus.LoadMoreEnd -> bind.srlNewsHome.finishLoadMore()
+                    else -> bind.srlNewsHome.autoRefresh()
+                }
+            }
+
+
+            observeState(this@RefreshActivity, MainViewState<List<Data>>::msg) {
                 it?.let {
 
                 }
             }
 
-            observeState(this@RefreshActivity, MainViewState<BaseResult<List<Data>>>::data) {
+            /*observeState(this@RefreshActivity, MainViewState<List<Data>>::data) {
                 it?.let {
                     value?.fetchStatus?.let { status ->
-                        L.i("==========="+it.data.toString())
-                        newsRvAdapter.submitList(it.data)
+                        //L.i("==========="+it.toString())
+                        newsRvAdapter.submitList(it)
 
-                        /*if(status == RefreshStatus.RefreshEnd) {
+                        *//*if(status == RefreshStatus.RefreshEnd) {
                             newsRvAdapter.submitList(it.data)
                         }else if(status == RefreshStatus.LoadMoreEnd) {
                             val newList = mutableListOf<Data>()
@@ -82,20 +102,20 @@ class RefreshActivity : BaseActivity<ActivityRefreshBinding>() {
                             newList.addAll(oldList);
                             newList.addAll(it.data);
                             newsRvAdapter.submitList(newList);
-                        }*/
+                        }*//*
                     }
                 }
-            }
+            }*/
 
 
-            observeState(this@RefreshActivity, MainViewState<BaseResult<List<Data>>>::fetchStatus) {
+            /*observeState(this@RefreshActivity, MainViewState<List<Data>>::fetchStatus) {
                 when (it) {
                     is RefreshStatus.NotRefresh -> bind.srlNewsHome.autoRefresh()
                     is RefreshStatus.RefreshEnd -> bind.srlNewsHome.finishRefresh()
                     is RefreshStatus.LoadMoreEnd -> bind.srlNewsHome.finishLoadMore()
                     else -> bind.srlNewsHome.autoRefresh()
                 }
-            }
+            }*/
         }
 
         viewModel.viewEvents.observe(this) {

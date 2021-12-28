@@ -8,8 +8,6 @@ import com.alibaba.fastjson.JSONObject
 import com.base.lib.base.bus.SingleLiveEvent
 import com.base.lib.base.bus.SingleLiveEvents
 import kotlin.reflect.KProperty1
-import kotlin.reflect.KProperty2
-
 
 
 fun <T, A> LiveData<T>.observeState(

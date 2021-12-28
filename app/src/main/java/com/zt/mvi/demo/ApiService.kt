@@ -13,7 +13,7 @@ interface ApiService {
     fun getLightUpList(): Deferred<String>
 
     @GET("/api/lightup/category/list")
-    fun getLightList(): Deferred<NetState<BaseResult<List<Data>>>>
+    fun getLightList(): Deferred<NetState<List<Data>>>
 
     @GET("/api/user/detail")
     fun getUserDetail(): Deferred<JSONObject>

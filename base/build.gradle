@@ -71,12 +71,17 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.1")
     api 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
 
+    //arouter
     api 'com.alibaba:arouter-api:1.5.1'
     kapt 'com.alibaba:arouter-compiler:1.5.1'
 
     //hilt
     api "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
+    //room
+    api "androidx.room:room-runtime:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5" // use kapt for Kotlin
 
     //rxjava
     api("com.squareup.retrofit2:retrofit:2.9.0")

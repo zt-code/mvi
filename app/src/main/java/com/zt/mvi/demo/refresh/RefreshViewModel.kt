@@ -9,9 +9,12 @@ import com.base.lib.net.bean.BaseResult
 import com.zt.mvi.demo.ApiService
 import com.zt.mvi.demo.bean.Data
 import com.zt.mvvm.net.Nets
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
+/**
+ * 4点半修改
+ */
 class RefreshViewModel(var strType: String) : ViewModel() {
 
     constructor() : this("我是空哦哦哦")
@@ -27,7 +30,7 @@ class RefreshViewModel(var strType: String) : ViewModel() {
     val dataStates = _dataStates.asLiveData()*/
 
     //下拉状态
-    private val _viewStates: MutableLiveData<MainViewState<BaseResult<List<Data>>>> = MutableLiveData(
+    private val _viewStates: MutableLiveData<MainViewState<List<Data>>> = MutableLiveData(
         MainViewState()
     )
     val viewStates = _viewStates.asLiveData()
@@ -62,13 +65,24 @@ class RefreshViewModel(var strType: String) : ViewModel() {
         //GlobalScope
         //viewModelScope
         viewModelScope.launch {
+            /*delay(1000)
+            val list:List<*> = mutableListOf<Data>() as ArrayList<Data>
+            for (index in 0 .. 10) {
+                var data = Data();
+                data.name = "$index"
+                //list.add(data);
+            }
+
+            _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, list = list) }*/
+
+            //Nets.get("aaa").addInterceptor(DemoInterceptor()).build()
             when (val result = Nets.get("aaa").build().create(ApiService::class.java).getLightList().await()) {
+                is NetState.Success -> {
+                    _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, data = result.data) }
+                }
                 is NetState.Error -> {
                     _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, msg = result.msg) }
                     _viewEvents.setEvent(MainViewEvent.ShowToast(message = result.msg.toString()))
-                }
-                is NetState.Success -> {
-                    _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, data = result.data) }
                 }
             }
         }
@@ -82,6 +96,17 @@ class RefreshViewModel(var strType: String) : ViewModel() {
         //GlobalScope
         //viewModelScope
         viewModelScope.launch {
+            /*delay(1000)
+            val list = mutableListOf<Data>()
+            for (index in 0 .. 10) {
+                var data = Data();
+                data.name = "$index"
+                list.add(data);
+            }
+
+            _viewStates.setState { copy(fetchStatus = RefreshStatus.LoadMoreEnd, list = list) }*/
+
+            Nets.get("aaa").addInterceptor(DemoInterceptor()).build()
             when (val result = Nets.get("aaa").build().create(ApiService::class.java).getLightList().await()) {
                 is NetState.Error -> {
                     _viewStates.setState { copy(fetchStatus = RefreshStatus.LoadMoreEnd) }
