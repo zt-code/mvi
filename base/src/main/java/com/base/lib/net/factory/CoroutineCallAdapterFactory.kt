@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import com.base.lib.net.L
 import com.base.lib.net.bean.BaseBody
-import com.base.lib.net.bean.BaseResult
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Deferred
 import retrofit2.*

@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         android:background="@color/white">
 
         <com.base.lib.statusbar.StatusBarFLayout
@@ -33,22 +34,17 @@
                 app:tabMode="scrollable"/>
         </com.base.lib.statusbar.StatusBarFLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:background="@color/c_4a83f0">
-            <TextView
-                android:id="@+id/tv_close"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="关闭页面"/>
-        </RelativeLayout>
+        <Button
+            android:id="@+id/tv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关闭页面"/>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+
     </LinearLayout>
 
 </layout>

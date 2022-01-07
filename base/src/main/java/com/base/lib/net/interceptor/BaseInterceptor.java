@@ -55,8 +55,8 @@ public class BaseInterceptor implements Interceptor {
             request = request.newBuilder().url(httpUrlBuilder.build()).build();
         }
         ////L.i("===========queries============"+queries.toString());
-
-        return chain.proceed(request);
+        Response response = chain.proceed(request);
+        return response;
     }
 
     public BaseInterceptor addHeader(String name, String value) {

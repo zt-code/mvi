@@ -84,6 +84,8 @@ dependencies {
         implementation project(':module1')
     }
 
+    implementation 'com.github.jiusetian:EasySocket:2.1.1'
+
     //抛错
     implementation 'cat.ereza:customactivityoncrash:2.2.0'
 

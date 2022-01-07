@@ -1,30 +1,27 @@
 package com.zt.mvi
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
+import android.os.*
 import androidx.lifecycle.ViewModelProvider
-import com.alibaba.android.arouter.launcher.ARouter
 import com.alibaba.fastjson.JSONObject
 import com.base.lib.base.Tag
 import com.base.lib.base.base_act.BaseFrgActivity
 import com.base.lib.base.base_frg.OnFragmentResult
 import com.base.lib.net.L
-import com.base.lib.net.bean.BaseResult
 import com.base.lib.net.http.HttpHelper
-import com.base.lib.observeState
 import com.zt.mvi.databinding.ActivitySplashBinding
-import com.zt.mvi.demo.bean.Data
 import com.zt.mvi.demo.bean.IntTag
-import com.zt.mvi.demo.refresh.MainViewState
 import com.zt.mvi.demo.refresh.RefreshViewModel
 import com.zt.mvi.demo.refresh.RefreshViewModelFactory
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.*
 import javax.inject.Inject
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.base.lib.base.IntentData
+
 import com.zt.mvi.demo.refresh.RefreshActivity
-import com.zt.mvvm.base.frg.BaseFragment
+import com.zt.mvi.demo.viewpage.FrgViewPager
+
 
 @AndroidEntryPoint
 @Route(path = "/mvi/splash")
@@ -46,6 +43,7 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
         return R.layout.activity_splash;
     }
 
+    @SuppressLint("CheckResult")
     override fun initView(savedInstanceState: Bundle?) {
         //viewModel = ViewModelProvider(this, RefreshViewModelFactory("some string value")).get(RefreshViewModel::class.java)
 
@@ -59,31 +57,12 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
 
         }
 
-        /*viewModel.viewStates.run {
-            observeState(this@SplashActivity, MainViewState<BaseResult<List<Data>>>::msg) {
-                it?.let {
-                    //L.i("==========="+it.toString())
-                }
-            }
-            observeState(this@SplashActivity, MainViewState<BaseResult<List<Data>>>::data) {
-                it?.let {
-                    value?.fetchStatus?.let { status ->
-                        //L.i("==========="+it.data.toString())
-                    }
-                }
-            }
-        }*/
-
         /*GlobalScope.launch(Dispatchers.IO) {
             val getStr = HttpUtil.get("https://chengshidianliang.net/api/lightup/category/list", json)
             L.i("==========哈哈哈  $getStr")
         }*/
 
-        bind.tv.setOnClickListener {
-            /*ARouter.getInstance().build("/test/activity")
-                .withString("key3", "888")
-                .navigation();*/
-
+        bind.tvRefresh.setOnClickListener {
             val intent = Intent(this, RefreshActivity::class.java)
             intent.putExtra(Tag.UI, IntentData().apply {
                 frgParams = JSONObject().apply {
@@ -91,32 +70,41 @@ class SplashActivity : BaseFrgActivity<ActivitySplashBinding>() {
                 }
             })
             startActivity(intent);
+        }
 
-            /*val fragment: BaseFragment<*> = ARouter.getInstance().build("/module/fragment").navigation() as BaseFragment<*>
+        bind.tvAdd.setOnClickListener {
+
+            /*ARouter.getInstance().build("/test/activity")
+                .withString("key3", "888")
+                .navigation();*/
+
+            /*val intent = Intent(this, RefreshActivity::class.java)
+            intent.putExtra(Tag.UI, IntentData().apply {
+                frgParams = JSONObject().apply {
+                    put("title", "我是SplashActivity页面传递过来的数据")
+                }
+            })
+            startActivity(intent);*/
+
+            //val fragment: BaseFragment<*> = ARouter.getInstance().build("/module/fragment").navigation() as BaseFragment<*>
             var result = object : OnFragmentResult {
                 override fun onResult(result: JSONObject) {
                     result?.let {
-                        bind.tv.text = result.getString("title")
+                        bind.tvAdd.text = result.getString("title")
                         L.i("====你大爷哦哦哦  "+result.toString())
                     }
                 }
             }
-            openFragment(*//*FrgViewPager()*//*fragment.apply {
+            openFragment(FrgViewPager().apply {
                 arguments = Bundle().apply {
                     putSerializable(Tag.FrgData, JSONObject().apply {
                         put("title", "FrgViewPager");
                     })
                 }
                 mResult = result
-            })?.commitAllowingStateLoss();*/
+            })?.commitAllowingStateLoss();
         };
-    }
 
-    private suspend fun getNet(): String {
-        GlobalScope.launch {
-
-        }
-        return "";
     }
 
 }

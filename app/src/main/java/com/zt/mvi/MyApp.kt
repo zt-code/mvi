@@ -1,7 +1,9 @@
 package com.zt.mvi
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.multidex.MultiDex
 import com.alibaba.android.arouter.launcher.ARouter
 import com.base.lib.BaseApp
 import dagger.hilt.android.HiltAndroidApp

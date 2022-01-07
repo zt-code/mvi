@@ -56,4 +56,6 @@ dependencies {
     api "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
+    api "com.android.support:multidex:1.0.1" // 多dex配置
+
 }

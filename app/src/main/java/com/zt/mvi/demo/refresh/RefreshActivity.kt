@@ -29,7 +29,7 @@ class RefreshActivity : BaseActivity<ActivityRefreshBinding>() {
     }
 
     private val newsRvAdapter by lazy {
-        DemoAdapter{
+        DemoAdapter {
             viewModel.dispatch(MainViewAction.NewsItemClicked(it.tag as Data))
         }
     }
@@ -78,13 +78,6 @@ class RefreshActivity : BaseActivity<ActivityRefreshBinding>() {
                     is RefreshStatus.RefreshEnd -> bind.srlNewsHome.finishRefresh()
                     is RefreshStatus.LoadMoreEnd -> bind.srlNewsHome.finishLoadMore()
                     else -> bind.srlNewsHome.autoRefresh()
-                }
-            }
-
-
-            observeState(this@RefreshActivity, MainViewState<List<Data>>::msg) {
-                it?.let {
-
                 }
             }
 

@@ -20,11 +20,6 @@ fun <T, A> LiveData<T>.observeState(
     }.distinctUntilChanged().observe(lifecycleOwner, Observer {
         action.invoke(it.a)
     })
-    /*this.map {
-        StateTuple1(prop1.get(it))
-    }.distinctUntilChanged().observe(lifecycleOwner) { (a) ->
-        action.invoke(a)
-    }*/
 }
 
 fun <T, A, B> LiveData<T>.observeState(
@@ -38,11 +33,6 @@ fun <T, A, B> LiveData<T>.observeState(
     }.distinctUntilChanged().observe(lifecycleOwner, Observer {
         action.invoke(it.a, it.b)
     })
-    /*this.map {
-        StateTuple2(prop1.get(it), prop2.get(it))
-    }.distinctUntilChanged().observe(lifecycleOwner) { (a, b) ->
-        action.invoke(a, b)
-    }*/
 }
 
 fun <T, A, B, C> LiveData<T>.observeState(
@@ -57,11 +47,6 @@ fun <T, A, B, C> LiveData<T>.observeState(
     }.distinctUntilChanged().observe(lifecycleOwner, Observer {
         action.invoke(it.a, it.b, it.c)
     })
-    /*this.map {
-        StateTuple3(prop1.get(it), prop2.get(it), prop3.get(it))
-    }.distinctUntilChanged().observe(lifecycleOwner) { (a, b, c) ->
-        action.invoke(a, b, c)
-    }*/
 }
 
 internal data class StateTuple1<A>(val a: A)

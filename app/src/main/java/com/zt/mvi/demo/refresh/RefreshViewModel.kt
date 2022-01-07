@@ -73,10 +73,10 @@ class RefreshViewModel(var strType: String) : ViewModel() {
                 //list.add(data);
             }
 
-            _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, list = list) }*/
+            _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, list = list) } */
 
             //Nets.get("aaa").addInterceptor(DemoInterceptor()).build()
-            when (val result = Nets.get("aaa").build().create(ApiService::class.java).getLightList().await()) {
+            when (val result = Nets.get("aaa").build().create(ApiService::class.java).getLightList().also {  }.await()) {
                 is NetState.Success -> {
                     _viewStates.setState { copy(fetchStatus = RefreshStatus.RefreshEnd, data = result.data) }
                 }
